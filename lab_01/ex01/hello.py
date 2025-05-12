@@ -1,0 +1,5 @@
+print("Vu Duc Manh")
+print("2280601898")
+print("HUTECH")
+print("BMTTNC")
+print("Lab 01")
