@@ -41,10 +41,18 @@ class MyApp(QMainWindow):
             print("Error: %s" % e)
 
     def call_api_decrypt(self):
+        cipher_text = self.ui.plainTextEdit_3.toPlainText()
+        key = self.ui.plainTextEdit_2.toPlainText()
+        if not cipher_text or not key:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText("Vui lòng nhập đầy đủ CipherText và Key!")
+            msg.exec_()
+            return
         url = "http://127.0.0.1:5000/api/caesar/decrypt"
         payload = {
-            "cipher_text": self.ui.plainTextEdit_3.toPlainText(),
-            "key": self.ui.plainTextEdit_2.toPlainText()
+            "cipher_text": cipher_text,
+            "key": key
         }
         try:
             response = requests.post(url, json=payload)
